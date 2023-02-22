@@ -1,1 +1,1 @@
-OPERATIONS = {'add', 'sub', 'mult', 'div'}
+OPERATIONS = ['add', 'sub', 'mult', 'div']
