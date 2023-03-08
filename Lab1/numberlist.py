@@ -8,9 +8,3 @@ def even_function(numlist):
         return "No even numbers"
     else: return result
 
-
-if __name__ == '__main__':
-
-    numlist = list(input('Enter separated by space numbers: ').split())
-
-    print(even_function(numlist))
