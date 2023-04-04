@@ -1,7 +1,5 @@
 import re
 
-EXCLUSIONS = ["Dr", "Mr", "Mrs","Lt", "Rep", "etc"]
-
 def amount_of_non_declarative_sentences(text):
     non_declarative_pattern = r'([0-9]+[a-zA-Z]+\?)|([a-zA-Z]+\?)|([a-zA-Z]+[0-9]+\?)|([0-9]+\?)|([0-9]+[a-zA-Z]+\!)|([a-zA-Z]+\!)|([a-zA-Z]+[0-9]+\!)|([0-9]+\!)'
     end_non_dec_match = re.findall(non_declarative_pattern, text)
