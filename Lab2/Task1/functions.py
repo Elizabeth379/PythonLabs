@@ -46,3 +46,31 @@ def average_length_of_the_sentence(text):
         return average_sentence_length
     else:
         return 0
+
+
+def average_length_of_the_word(text):
+    word_and_number_pattern = r'(\b[a-zA-Z\d]+\b)'
+    number_pattern = r'(\b\d+\b)'
+
+    words_and_numbers = re.findall(word_and_number_pattern, text)
+    numbers = re.findall(number_pattern, text)
+    words = []
+
+    for element in words_and_numbers:
+        if element not in numbers:
+            words.append(element)
+
+    length_in_characters = 0
+
+    for word in words:
+        length_in_characters += len(word)
+
+    amount_of_words = len(words)
+
+    if amount_of_words != 0:
+        average_word_length = length_in_characters / amount_of_words
+        return average_word_length
+    else:
+        return 0
+
+
