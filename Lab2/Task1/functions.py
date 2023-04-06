@@ -6,7 +6,7 @@ def amount_of_non_declarative_sentences(text):
     sentences_with_non_dec = len(end_non_dec_match)
     return sentences_with_non_dec
 
-def amount_of_sentences(text, sentences_with_non_dec):
+def amount_of_sentences(text):
     end_point_match = re.findall(POINT_PATTERN, text)
     sentences_with_poits = len(end_point_match)
 
@@ -16,26 +16,30 @@ def amount_of_sentences(text, sentences_with_non_dec):
     for i in TWO_WORDS_EXCLUSIONS:
         sentences_with_poits -= text.count(i)*2
 
+    sentences_with_non_dec = amount_of_non_declarative_sentences(text)
+
     sentences_in_the_text = sentences_with_poits + sentences_with_non_dec
 
     return sentences_in_the_text
 
-def average_length_of_the_sentence(text):
+def only_words(text):
     words_and_numbers = re.findall(WORD_AND_NUMBER_PATTERN, text)
     numbers = re.findall(NUMBER_PATTERN, text)
-    words=[]
+    words = []
 
     for element in words_and_numbers:
         if element not in numbers:
             words.append(element)
+    return words
 
+def average_length_of_the_sentence(text):
+    words = only_words(text)
     length_in_characters = 0
 
     for word in words:
         length_in_characters += len(word)
 
-    sentences_with_non_dec = amount_of_non_declarative_sentences(text)
-    sentences_in_the_text = amount_of_sentences(text, sentences_with_non_dec)
+    sentences_in_the_text = amount_of_sentences(text)
 
     if sentences_in_the_text != 0:
         average_sentence_length = length_in_characters / sentences_in_the_text
@@ -45,14 +49,7 @@ def average_length_of_the_sentence(text):
 
 
 def average_length_of_the_word(text):
-    words_and_numbers = re.findall(WORD_AND_NUMBER_PATTERN, text)
-    numbers = re.findall(NUMBER_PATTERN, text)
-    words = []
-
-    for element in words_and_numbers:
-        if element not in numbers:
-            words.append(element)
-
+    words = only_words(text)
     length_in_characters = 0
 
     for word in words:
@@ -66,4 +63,25 @@ def average_length_of_the_word(text):
     else:
         return 0
 
+def max_value(x):
+    return x[1]
+def top_k_repeated_n_grams_in_the_text(text):
+    print("Enter n k:")
+    try:
+        n, k = map(int, input().split())
+    except ValueError:
+        print('n, k - are not a number. Default value will be used.')
+        n, k = 4, 10
 
+    dictionary = {}
+    text = text.lower()
+    words = only_words(text)
+
+    for i in range(len(words) - n + 1):
+        n_grams = ' '.join([str(j) for j in words[i:i + n]])
+        if n_grams not in dictionary:
+            dictionary[n_grams] = 1
+        else:
+            dictionary[n_grams] += 1
+
+    return sorted(dictionary.items(), key=max_value, reverse=True)[0:k]
