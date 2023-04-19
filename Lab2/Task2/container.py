@@ -1,14 +1,12 @@
 import json
 import re
 
-class Container:
-    user = str()
-    storage = set()
-    file = str()
 
+class Container:
     def __init__(self, _user):
         self.user = _user
-        self.file = "container.json"
+        self.file = f"{self.user}.json"
+        self.storage = set()
 
     def add(self, element):
         self.storage.add(element)
@@ -37,4 +35,25 @@ class Container:
         else:
             print("Matches not found.")
 
-    
+    def save(self):
+        with open(self.file, "w") as f:
+            json.dump(list(self.storage), f)
+
+    def load(self):
+        try:
+            with open(self.file, "r") as f:
+                self.storage = set(json.load(f))
+        except FileNotFoundError:
+            print("File not found.")
+
+    def switch(self, username):
+        self.save()
+        self.user = username
+        self.file = f"{self.user}.json"
+        while True:
+            ans = input("Do you want to load data? (y/n)")
+            if ans == "y":
+                self.load()
+                break
+            elif ans == "n":
+                break
