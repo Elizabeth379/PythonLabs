@@ -1,10 +1,13 @@
 import re
 from constants import (EXCLUSIONS, TWO_WORDS_EXCLUSIONS, NON_DECLARATIVE_PATTERN, POINT_PATTERN,
                        WORD_AND_NUMBER_PATTERN, NUMBER_PATTERN)
+
+
 def amount_of_non_declarative_sentences(text):
     end_non_dec_match = re.findall(NON_DECLARATIVE_PATTERN, text)
     sentences_with_non_dec = len(end_non_dec_match)
     return sentences_with_non_dec
+
 
 def amount_of_sentences(text):
     end_point_match = re.findall(POINT_PATTERN, text)
@@ -14,13 +17,14 @@ def amount_of_sentences(text):
         sentences_with_poits -= text.count(i)
 
     for i in TWO_WORDS_EXCLUSIONS:
-        sentences_with_poits -= text.count(i)*2
+        sentences_with_poits -= text.count(i) * 2
 
     sentences_with_non_dec = amount_of_non_declarative_sentences(text)
 
     sentences_in_the_text = sentences_with_poits + sentences_with_non_dec
 
     return sentences_in_the_text
+
 
 def only_words(text):
     words_and_numbers = re.findall(WORD_AND_NUMBER_PATTERN, text)
@@ -31,6 +35,7 @@ def only_words(text):
         if element not in numbers:
             words.append(element)
     return words
+
 
 def average_length_of_the_sentence(text):
     words = only_words(text)
@@ -63,8 +68,11 @@ def average_length_of_the_word(text):
     else:
         return 0
 
+
 def max_value(x):
     return x[1]
+
+
 def top_k_repeated_n_grams_in_the_text(text):
     print("Enter n k:")
     try:
@@ -84,4 +92,4 @@ def top_k_repeated_n_grams_in_the_text(text):
         else:
             dictionary[n_grams] += 1
 
-    return sorted(dictionary.items(), key=max_value, reverse=True)[0:k]
+    return sorted(dictionary.items(), key=max_value, reverse=True)[:k]
