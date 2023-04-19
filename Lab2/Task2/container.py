@@ -1,5 +1,5 @@
 import json
-
+import re
 
 class Container:
     user = str()
@@ -19,3 +19,22 @@ class Container:
     def find(self, element):
         if element in self.storage:
             return element
+
+    def list(self):
+        for elem in self.storage:
+            print(elem)
+
+    def grep(self, regex):
+        found_elements = set()
+        for elem in self.storage:
+            if re.search(regex, elem):
+                found_elements.add(elem)
+
+        if found_elements:
+            for el in found_elements:
+                print(el)
+
+        else:
+            print("Matches not found.")
+
+    
