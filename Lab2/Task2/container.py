@@ -13,8 +13,11 @@ class Container:
         print(f"Element {element} added")
 
     def remove(self, element):
-        self.storage.remove(element)
-        print(f"Element {element} removed")
+        try:
+            self.storage.remove(element)
+            print(f"Element {element} removed")
+        except KeyError:
+            print("No such elements in storage.")
 
     def find(self, element):
         if element in self.storage:
