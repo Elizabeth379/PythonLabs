@@ -48,7 +48,7 @@ class Container:
     def load(self):
         try:
             with open(self.file, "r") as f:
-                self.storage = set(json.load(f))
+                self.storage.update(set(json.load(f)))
         except FileNotFoundError:
             print("File not found.")
 
@@ -59,7 +59,9 @@ class Container:
         while True:
             ans = input("Do you want to load data? (y/n)")
             if ans == "y":
+                self.storage = set()
                 self.load()
                 break
             elif ans == "n":
+                self.storage = set()
                 break
