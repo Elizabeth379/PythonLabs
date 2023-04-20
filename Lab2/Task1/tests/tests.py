@@ -1,5 +1,6 @@
 import unittest
-import functions
+
+from Lab2.Task1 import functions
 
 
 class AmountOfSentencesTest(unittest.TestCase):

@@ -18,5 +18,11 @@ if __name__ == '__main__':
     print("Average length of the word in the text in characters")
     print(average_word_length)
     print("Top-K repeated N-grams in the text (K and N are taken from input if needed; by default K=10, N=4):")
-    top_k_repeated_n_grams = top_k_repeated_n_grams_in_the_text(text)
+    print("Enter n k:")
+    try:
+        n, k = map(int, input().split())
+    except ValueError:
+        print('n, k - are not a number. Default value will be used.')
+        n, k = 4, 10
+    top_k_repeated_n_grams = top_k_repeated_n_grams_in_the_text(text, n, k)
     print(top_k_repeated_n_grams)

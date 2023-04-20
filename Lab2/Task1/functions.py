@@ -1,6 +1,7 @@
 import re
-from constants import (EXCLUSIONS, TWO_WORDS_EXCLUSIONS, NON_DECLARATIVE_PATTERN, POINT_PATTERN,
-                       WORD_AND_NUMBER_PATTERN, NUMBER_PATTERN)
+
+from Lab2.Task1.constants import EXCLUSIONS, TWO_WORDS_EXCLUSIONS, NON_DECLARATIVE_PATTERN, POINT_PATTERN,\
+    WORD_AND_NUMBER_PATTERN, NUMBER_PATTERN
 
 
 def amount_of_non_declarative_sentences(text):
@@ -73,13 +74,7 @@ def max_value(x):
     return x[1]
 
 
-def top_k_repeated_n_grams_in_the_text(text):
-    print("Enter n k:")
-    try:
-        n, k = map(int, input().split())
-    except ValueError:
-        print('n, k - are not a number. Default value will be used.')
-        n, k = 4, 10
+def top_k_repeated_n_grams_in_the_text(text, n, k):
 
     dictionary = {}
     text = text.lower()
