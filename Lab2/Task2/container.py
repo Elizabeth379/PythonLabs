@@ -10,13 +10,17 @@ class Container:
 
     def add(self, element):
         self.storage.add(element)
+        print(f"Element {element} added")
 
     def remove(self, element):
         self.storage.remove(element)
+        print(f"Element {element} removed")
 
     def find(self, element):
         if element in self.storage:
-            return element
+            print(f"{element} was found")
+        else:
+            print("No such elements in storage.")
 
     def list(self):
         for elem in self.storage:
@@ -38,6 +42,8 @@ class Container:
     def save(self):
         with open(self.file, "w") as f:
             json.dump(list(self.storage), f)
+
+        print("File successfully saved.")
 
     def load(self):
         try:
