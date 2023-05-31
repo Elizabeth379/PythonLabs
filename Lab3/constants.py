@@ -18,3 +18,6 @@ LIST_RECURSION = r"\[(?R)?(,(?R))*\]"
 VALUE_RECURSION = r"\{((?R):(?R))?(,(?R):(?R))*\}"
 
 VALUE = fr"\s*({LIST_RECURSION}|{VALUE_RECURSION}|{STR}|{FLOAT}|{BOOL}|{INT}|{NONE}\s*)"
+
+REG_BASE_TYPES = r"str|int|float|bool|NoneType|list|dict"
+ELEMENT = fr"\s*(\<(?P<key>{REG_BASE_TYPES})\>(?P<value>([^<>]*)|(?R)+)\</(?:{REG_BASE_TYPES})\>)\s*"

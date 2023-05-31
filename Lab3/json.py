@@ -58,7 +58,7 @@ class JsonSerializer:
             return {self.find(res[i][0]): self.find(res[i+1][0]) for i in range(0, len(res), 2)}
 
     def dumps(self, obj):
-        return  self.convert(self.ser.serialize(obj))
+        return self.convert(self.ser.serialize(obj))
 
     def dump(self, obj, f):
         f.write(self.dumps(obj))

@@ -1,5 +1,5 @@
 from serializer import Serializer, Deserializer
-
+from constants import ELEMENT
 import regex
 
 class XMLSerializer:
@@ -27,3 +27,42 @@ class XMLSerializer:
 
         elif not value:
             return "<NoneType>None</NoneType>"
+
+    def find(self, value):
+
+        res = regex.fullmatch(ELEMENT, value)
+
+        if not res:
+            return
+
+        key = res.group("key")
+        val = res.group("value")
+
+        match key:
+
+            case "int":
+                return int(val)
+
+            case "float":
+                return float(val)
+
+            case "bool":
+                return str(val) == "True"
+
+            case "str":
+                return val.replace("&quot;", '"').replace("&apos;", "'").replace("&lt", '<').replace("&gt", '>').replace("&amp",
+                                                                                                                 '&')
+            case "list":
+                res = regex.findall(ELEMENT, val)
+                return [self.find(match[0]) for match in res]
+
+            case "dict":
+                res = regex.findall(ELEMENT, val)
+                return {self.find(res[i][0]): self.find(res[i + 1][0]) for i in range(0, len(res), 2)}
+
+            case "NoneType":
+                return None
+
+
+
+
