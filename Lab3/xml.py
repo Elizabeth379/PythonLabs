@@ -74,4 +74,3 @@ class XMLSerializer:
 
     def load(self, f):
         return self.loads(f.read)
-    
