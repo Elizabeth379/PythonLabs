@@ -7,12 +7,12 @@ class JsonSerializer:
         self.ser = Serializer()
         self.des = Deserializer()
 
-    def convert(self,value):
+    def convert(self, value):
 
         if isinstance(value, (int, float, bool)):
             return str(value).lower()
 
-        elif isinstance(value,str):
+        elif isinstance(value, str):
             return '"' + value.replace("\\", "\\\\").replace("'", "\'").replace('"', "\"") + '"'
 
         elif isinstance(value, list):
