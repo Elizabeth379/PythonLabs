@@ -63,6 +63,15 @@ class XMLSerializer:
             case "NoneType":
                 return None
 
+    def dumps(self, obj):
+        return self.convert(self.ser.serialize(obj))
 
+    def dump(self, obj, f):
+        f.write(self.dumps(obj))
 
+    def loads(self, value):
+        return self.des.deserialize(self.find(value))
 
+    def load(self, f):
+        return self.loads(f.read)
+    
