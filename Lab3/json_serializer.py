@@ -1,10 +1,11 @@
-from serializer import Serializer, Deserializer
-from constants import INT, FLOAT, STR, BOOL, NONE, VALUE
+from distributions import Serializer, Deserializer
+from  constants import INT, FLOAT, BOOL, STR, NONE, VALUE
 import regex
+
 
 class JsonSerializer:
 
-    def __int__(self):
+    def __init__(self):
         self.ser = Serializer()
         self.des = Deserializer()
 

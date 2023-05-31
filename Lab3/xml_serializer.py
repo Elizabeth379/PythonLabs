@@ -1,10 +1,12 @@
-from serializer import Serializer, Deserializer
+from distributions import Serializer, Deserializer
 from constants import ELEMENT
+
 import regex
+
 
 class XMLSerializer:
 
-    def __int__(self):
+    def __init__(self):
         self.ser = Serializer()
         self.des = Deserializer()
 
@@ -50,8 +52,8 @@ class XMLSerializer:
                 return str(val) == "True"
 
             case "str":
-                return val.replace("&quot;", '"').replace("&apos;", "'").replace("&lt", '<').replace("&gt", '>').replace("&amp",
-                                                                                                                 '&')
+                return val.replace("&quot;", '"').replace("&apos;", "'").replace("&lt", '<').replace("&gt", '>').replace("&amp", '&')
+
             case "list":
                 res = regex.findall(ELEMENT, val)
                 return [self.find(match[0]) for match in res]
@@ -73,4 +75,5 @@ class XMLSerializer:
         return self.des.deserialize(self.find(value))
 
     def load(self, f):
-        return self.loads(f.read)
+        return self.loads(f.read())
+

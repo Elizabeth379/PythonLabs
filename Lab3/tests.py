@@ -12,13 +12,13 @@ class JsonTests(unittest.TestCase):
         ser = self.serializer.dumps(19)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, 19)
+        self.assertEqual(des, 19)
 
     def test2(self):
         ser = self.serializer.dumps(19.5)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, 19.5)
+        self.assertEqual(des, 19.5)
 
     def test3(self):
         boolean = True
@@ -26,7 +26,7 @@ class JsonTests(unittest.TestCase):
         ser = self.serializer.dumps(boolean)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, boolean)
+        self.assertEqual(des, boolean)
 
     def test4(self):
         string = "hello"
@@ -34,7 +34,7 @@ class JsonTests(unittest.TestCase):
         ser = self.serializer.dumps(string)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, string)
+        self.assertEqual(des, string)
 
     def test5(self):
         l = ["1", "2", "3", "4"]
@@ -42,7 +42,7 @@ class JsonTests(unittest.TestCase):
         ser = self.serializer.dumps(l)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, l)
+        self.assertEqual(des, l)
 
     def test6(self):
         d = {"1": "masha", "2": "dasha", "3": "sasha", "4": "pasha"}
@@ -50,7 +50,7 @@ class JsonTests(unittest.TestCase):
         ser = self.serializer.dumps(d)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, d)
+        self.assertEqual(des, d)
 
     def test7(self):
         st = {1, "masha", 2, "dasha", 3, 4, 6}
@@ -58,14 +58,14 @@ class JsonTests(unittest.TestCase):
         ser = self.serializer.dumps(st)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, st)
+        self.assertEqual(des, st)
 
     def test8(self):
 
         ser = self.serializer.dumps(func)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des(19), func(19))
+        self.assertEqual(des(19), func(19))
 
     def test9(self):
         func_l = lambda x: x % 2 == 0
@@ -73,7 +73,7 @@ class JsonTests(unittest.TestCase):
         ser = self.serializer.dumps(func_l)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des(19), func_l(19))
+        self.assertEqual(des(19), func_l(19))
 
     def test10(self):
         func_dec = my_decorator(func)
@@ -83,7 +83,7 @@ class JsonTests(unittest.TestCase):
 
         func_des = des(func)
 
-        self.assertEquals(func_des(19), func_dec(19))
+        self.assertEqual(func_des(19), func_dec(19))
 
     def test11(self):
         cls = Three()
@@ -91,7 +91,7 @@ class JsonTests(unittest.TestCase):
         ser = self.serializer.dumps(cls)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des.test1(), cls.test1())
+        self.assertEqual(des.test1(), cls.test1())
 
     def test12(self):
         static_method = One()
@@ -99,7 +99,7 @@ class JsonTests(unittest.TestCase):
         ser = self.serializer.dumps(static_method)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des.static_test1(), static_method.static_test1())
+        self.assertEqual(des.static_test1(), static_method.static_test1())
 
 
 class XMLTests(unittest.TestCase):
@@ -111,13 +111,13 @@ class XMLTests(unittest.TestCase):
         ser = self.serializer.dumps(19)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, 19)
+        self.assertEqual(des, 19)
 
     def test2(self):
         ser = self.serializer.dumps(19.5)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, 19.5)
+        self.assertEqual(des, 19.5)
 
     def test3(self):
         boolean = True
@@ -125,7 +125,7 @@ class XMLTests(unittest.TestCase):
         ser = self.serializer.dumps(boolean)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, boolean)
+        self.assertEqual(des, boolean)
 
     def test4(self):
         string = "hello"
@@ -133,7 +133,7 @@ class XMLTests(unittest.TestCase):
         ser = self.serializer.dumps(string)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, string)
+        self.assertEqual(des, string)
 
     def test5(self):
         l = ["1", "2", "3", "4"]
@@ -141,7 +141,7 @@ class XMLTests(unittest.TestCase):
         ser = self.serializer.dumps(l)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, l)
+        self.assertEqual(des, l)
 
     def test6(self):
         d = {"1": "masha", "2": "dasha", "3": "sasha", "4": "pasha"}
@@ -149,7 +149,7 @@ class XMLTests(unittest.TestCase):
         ser = self.serializer.dumps(d)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, d)
+        self.assertEqual(des, d)
 
     def test7(self):
         st = {1, "masha", 2, "dasha", 3, 4, 6}
@@ -157,14 +157,14 @@ class XMLTests(unittest.TestCase):
         ser = self.serializer.dumps(st)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des, st)
+        self.assertEqual(des, st)
 
     def test8(self):
 
         ser = self.serializer.dumps(func)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des(19), func(19))
+        self.assertEqual(des(19), func(19))
 
     def test9(self):
         func_l = lambda x: x % 2 == 0
@@ -172,7 +172,7 @@ class XMLTests(unittest.TestCase):
         ser = self.serializer.dumps(func_l)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des(19), func_l(19))
+        self.assertEqual(des(19), func_l(19))
 
     def test10(self):
         func_dec = my_decorator(func)
@@ -182,7 +182,7 @@ class XMLTests(unittest.TestCase):
 
         func_des = des(func)
 
-        self.assertEquals(func_des(19), func_dec(19))
+        self.assertEqual(func_des(19), func_dec(19))
 
     def test11(self):
         cls = Three()
@@ -190,7 +190,7 @@ class XMLTests(unittest.TestCase):
         ser = self.serializer.dumps(cls)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des.test1(), cls.test1())
+        self.assertEqual(des.test1(), cls.test1())
 
     def test12(self):
         static_method = One()
@@ -198,4 +198,4 @@ class XMLTests(unittest.TestCase):
         ser = self.serializer.dumps(static_method)
         des = self.serializer.loads(ser)
 
-        self.assertEquals(des.static_test1(), static_method.static_test1())
+        self.assertEqual(des.static_test1(), static_method.static_test1())
