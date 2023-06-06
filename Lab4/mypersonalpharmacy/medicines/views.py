@@ -53,6 +53,7 @@ def mlist(request):
     return render(request, 'medicines/med_list.html', {'posts': posts, 'title': 'Лекарства'})
 
 
+
 def archive(request, year):
     if int(year) > 2023:
         return redirect('medhome')
@@ -63,3 +64,8 @@ def archive(request, year):
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound("<h1>Мы не нашли страницу, которую вы искали :( </h1><p>Попробуйте перепроверить поисковый запрос.</p>")
+
+
+def bying(request):
+    posts = Sale.objects.order_by('medication')
+    return render(request, 'medicines/bying.html', {'posts': posts,'title': 'Покупка'})
