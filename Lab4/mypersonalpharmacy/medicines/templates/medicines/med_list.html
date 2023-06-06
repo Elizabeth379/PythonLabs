@@ -1,16 +1,21 @@
-{% extends 'medicines/base_list.html' %}
+{% extends 'medicines/layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<h1>{{title}}</h1>
+<div class="features">
+    <h1>{{title}}</h1>
+    <ul>
+      {% for p in posts %}
+        <li>
+          <h2>{{p.title}}</h2>
+          <p>{{p.content}}</p>
+          <hr>
+        </li>
+      {% endfor %}
+    </ul>
+    <button class="btn btn-warning">Узнать больше о нас</button>
+</div>
 
-<ul>
-  {% for p in posts %}
-  <li>
-    <h2>{{p.title}}</h2>
-    <p>{{p.content}}</p>
-    <hr>
-  </li>
-  {% endfor %}
-</ul>
 
 {% endblock %}

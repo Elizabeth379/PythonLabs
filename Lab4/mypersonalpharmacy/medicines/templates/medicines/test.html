@@ -1,6 +1,11 @@
-{% extends 'medicines/base_list.html' %}
+{% extends 'medicines/layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<h1>{{title}}</h1>
-<p>Содержимое главной страницы</p>
+<div class="features">
+    <h1>{{title}}</h1>
+    <p>Добро пожаловать в Вашу персональную аптеку. Здесь Вы найдете то, что Вам нужно.</p>
+    <button class="btn btn-warning">Узнать больше о нас</button>
+</div>
 {% endblock %}

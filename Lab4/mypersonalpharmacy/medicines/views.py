@@ -16,7 +16,7 @@ def about(request):
 
 
 def mlist(request):
-    posts = Medicines.objects.all()
+    posts = Medication.objects.all()
     if request.GET:
         print(request.GET)  # http://127.0.0.1:8000/medicines/medlist/?name=George&type=medic
     if request.POST:
