@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class MedicationCategory(models.Model):
@@ -52,7 +53,7 @@ class Employee(models.Model):
 class Medication(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
-    photo = models.ImageField(upload_to="photos/%Y/%n/%d/")
+    photo = models.ImageField(upload_to="photos/%Y/%n/%d/", null=True)
     category = models.ForeignKey(MedicationCategory, on_delete=models.CASCADE)
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=8, decimal_places=2)
@@ -65,6 +66,9 @@ class Medication(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('bying', kwargs={'bying_id': self.pk})
 
 
 class Sale(models.Model):

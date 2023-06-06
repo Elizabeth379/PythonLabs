@@ -66,6 +66,11 @@ def pageNotFound(request, exception):
     return HttpResponseNotFound("<h1>Мы не нашли страницу, которую вы искали :( </h1><p>Попробуйте перепроверить поисковый запрос.</p>")
 
 
-def bying(request):
+def bying(request, bying_id):
+    purchase = Medication.objects.get(pk=bying_id)
+    return render(request, 'medicines/bying.html', {'title': 'Покупка', 'purchase': purchase})
+
+
+def thanks(request):
     posts = Sale.objects.order_by('medication')
-    return render(request, 'medicines/bying.html', {'posts': posts,'title': 'Покупка'})
+    return render(request, 'medicines/thanks.html', {'posts': posts, 'title': 'Куплено'})

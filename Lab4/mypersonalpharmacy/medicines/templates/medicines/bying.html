@@ -4,21 +4,14 @@
 
 {% block content %}
 <div class="features">
-    <h1>Спасибо за покупку!</h1>
-    <h1>Наши продажи:</h1>
-    {% if posts %}
-        {% for p in posts %}
-            <div class="alert alert-warning">
-                <h3>{{p.medication}}</h3>
-                <p>Продавец: {{p.employee}}</p>
-                <p>Куплено: {{p.quantity}}</p>
-                <p>Дата покупки: {{p.date}}</p>
-                <hr>
-            </div>
-          {% endfor %}
-    {% else %}
-        <p>Лекарств не куплено.</p>
-    {% endif %}
+    <h1>Хотите приобрести товар?</h1>
+    <h3>Наименование: {{purchase}}</h3>
+    <h3>Цена: {{purchase.price}}</h3>
+    <h3>Поставщик: {{purchase.supplier}}</h3>
+    <h3>Аптека: </h3>
+    <a href="{% url 'thanks' %}" class="btn btn-warning">Да</a>
+    <a href="{% url 'medlist' %}" class="btn btn-warning">Нет</a>
+
 
 </div>
 
