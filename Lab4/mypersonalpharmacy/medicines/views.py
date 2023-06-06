@@ -2,12 +2,22 @@ from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 
 from .models import *
+import random
+import requests
 
 
 def test(request):
+    response = requests.get('https://cat-fact.herokuapp.com/facts')
+    facts = response.json()
+
+    random_fact = None
+    if facts:
+        random_fact = random.choice(facts)
+        if 'source' not in random_fact:
+            random_fact['source'] = 'Unknown'
     data = {
         'title': 'Домашняя страница',
-        'values': ['Здоровье', 'Комфорт', 'Экономия']
+        'random_fact': random_fact,
     }
     return render(request, 'medicines/test.html', data)
 
@@ -17,7 +27,7 @@ def about(request):
 
 
 def mlist(request):
-    posts = Medication.objects.all()
+    posts = Medication.objects.order_by('title')
     if request.GET:
         print(request.GET)  # http://127.0.0.1:8000/medicines/medlist/?name=George&type=medic
     if request.POST:

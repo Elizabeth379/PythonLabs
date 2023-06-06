@@ -6,10 +6,11 @@
 <div class="features">
     <h1>{{title}}</h1>
     <p>Добро пожаловать в Вашу персональную аптеку. Здесь Вы найдете то, что Вам нужно.</p>
-    <button class="btn btn-warning">Узнать больше о нас</button>
-
-    {% for el in values %}
-        <p>{{el}}</p>
-    {% endfor %}
+    <div class="alert alert-info">
+            <h3>Fact about cats:</h3>
+            <p>{{ random_fact.text }}</p>
+            <p>Source: <a href="{{ random_fact.source }}">{{ random_fact.source }}</a></p>
+            <p>Created At: {{ random_fact.createdAt }}</p>
+    </div>
 </div>
 {% endblock %}

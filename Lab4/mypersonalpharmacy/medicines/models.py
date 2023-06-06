@@ -78,7 +78,7 @@ class Sale(models.Model):
         verbose_name_plural = 'Sales'
 
     def __str__(self):
-        return f"{self.medication.name} - {self.employee.name}"
+        return f"{self.medication.title} - {self.employee.name}"
 
 
 class Customer(models.Model):

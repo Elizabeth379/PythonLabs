@@ -1,20 +1,25 @@
 {% extends 'medicines/layout.html' %}
-
+{% load static %}
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
 <div class="features">
     <h1>{{title}}</h1>
-    <ul>
-      {% for p in posts %}
-        <li>
-          <h2>{{p.title}}</h2>
-          <p>{{p.content}}</p>
-          <hr>
-        </li>
-      {% endfor %}
-    </ul>
-    <button class="btn btn-warning">Узнать больше о нас</button>
+    {% if posts %}
+        {% for p in posts %}
+            <div class="alert alert-warning">
+                <h3>{{p.title}}</h3>
+                <p>{{p.content}}</p>
+                <a href="{{ p.get_absolute_url }}">
+                    <img src = "{% if p.photo %}{{ p.photo.url }}" alt="Medication photo"> {% else %}{% static 'images/no-immage-icon-6.png' %}{% endif %}">
+                </a>
+                <a href="" class="btn btn-warning">Купить</a>
+                <hr>
+            </div>
+          {% endfor %}
+    {% else %}
+        <p>Лекарств нет в продаже.</p>
+    {% endif %}
 </div>
 
 
