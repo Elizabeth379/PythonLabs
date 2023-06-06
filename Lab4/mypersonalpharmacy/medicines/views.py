@@ -3,16 +3,17 @@ from django.shortcuts import render, redirect
 
 from .models import *
 
-menu = ["О нас", "Список лекарств", "Войти"]
-menu1 = ["Вы знаете", "Что этот сайт", "Сделан для Вас :3"]
-
 
 def test(request):
-    return render(request, 'medicines/test.html', {'menu': menu, 'title': 'Домашняя страница'})
+    data = {
+        'title': 'Домашняя страница',
+        'values': ['Здоровье', 'Комфорт', 'Экономия']
+    }
+    return render(request, 'medicines/test.html', data)
 
 
 def about(request):
-    return render(request, 'medicines/about.html', {'menu': menu1, 'title': 'О нас'})
+    return render(request, 'medicines/about.html', {'title': 'О нас'})
 
 
 def mlist(request):
@@ -21,7 +22,7 @@ def mlist(request):
         print(request.GET)  # http://127.0.0.1:8000/medicines/medlist/?name=George&type=medic
     if request.POST:
         print(request.POST)
-    return render(request, 'medicines/med_list.html', {'posts': posts, 'menu': menu1, 'title': 'Лекарства'})
+    return render(request, 'medicines/med_list.html', {'posts': posts, 'title': 'Лекарства'})
 
 
 def archive(request, year):

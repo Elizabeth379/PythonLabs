@@ -79,3 +79,16 @@ class Sale(models.Model):
 
     def __str__(self):
         return f"{self.medication.name} - {self.employee.name}"
+
+
+class Customer(models.Model):
+    name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=20)
+    medication = models.ForeignKey(Medication, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Customer'
+        verbose_name_plural = 'Customers'
+
+    def __str__(self):
+        return self.name

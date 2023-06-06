@@ -7,5 +7,9 @@
     <h1>{{title}}</h1>
     <p>Добро пожаловать в Вашу персональную аптеку. Здесь Вы найдете то, что Вам нужно.</p>
     <button class="btn btn-warning">Узнать больше о нас</button>
+
+    {% for el in values %}
+        <p>{{el}}</p>
+    {% endfor %}
 </div>
 {% endblock %}
