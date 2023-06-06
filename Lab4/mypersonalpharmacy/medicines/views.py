@@ -35,7 +35,13 @@ def test(request):
 
 
 def about(request):
-    return render(request, 'medicines/about.html', {'title': 'О нас'})
+    response = requests.get('https://dog.ceo/api/breeds/image/random')
+    image_url = response.json()['message']
+    context = {
+        'title': 'О нас',
+        'image_url': image_url,
+    }
+    return render(request, 'medicines/about.html', context)
 
 
 def mlist(request):
