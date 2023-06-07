@@ -9,6 +9,7 @@ urlpatterns = [
     path('medhome/', views.test, name='medhome'),  # http://127.0.0.1:8000/medicines/
     path('about/', views.about, name='about'),  # http://127.0.0.1:8000/medicines/about/
     path('medlist/', views.mlist, name='medlist'),  # http://127.0.0.1:8000/medicines/medlist/
+    path('pharms/', views.pharms, name='pharms'),
     path('bying/<int:bying_id>/', views.bying, name='bying'),
     path('thanks/<int:thanks_id>/', views.thanks, name='thanks'),
     path('no_avail/', views.no_avail, name='no_avail'),

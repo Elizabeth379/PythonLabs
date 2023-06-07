@@ -53,6 +53,10 @@ def mlist(request):
     return render(request, 'medicines/med_list.html', {'posts': posts, 'title': 'Лекарства'})
 
 
+def pharms(request):
+    posts = Department.objects.order_by('name')
+    return render(request, 'medicines/pharms.html', {'posts': posts, 'title': 'Аптеки'})
+
 
 def archive(request, year):
     if int(year) > 2023:
