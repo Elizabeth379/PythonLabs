@@ -68,19 +68,22 @@ def pageNotFound(request, exception):
 
 def bying(request, bying_id):
     purchase = Medication.objects.get(pk=bying_id)
+    
+    return render(request, 'medicines/bying.html', {'title': 'Покупка', 'purchase': purchase})
+
+
+def thanks(request, thanks_id):
+    posts = Sale.objects.order_by('medication')
+    purchase = Medication.objects.get(pk=thanks_id)
     saled = Sale.objects.all()
     for el in saled:
         if el.medication == purchase:
-            print("dkdkd")
             el.quantity += 1
             purchase.quantity -= 1
             if purchase.quantity == 0:
                 purchase.is_available = False
-    return render(request, 'medicines/bying.html', {'title': 'Покупка', 'purchase': purchase})
-
-
-def thanks(request):
-    posts = Sale.objects.order_by('medication')
+            el.save()
+            purchase.save()
     return render(request, 'medicines/thanks.html', {'posts': posts, 'title': 'Куплено'})
 
 

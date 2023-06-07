@@ -70,6 +70,9 @@ class Medication(models.Model):
     def get_absolute_url(self):
         return reverse('bying', kwargs={'bying_id': self.pk})
 
+    def get_absolute_url1(self):
+        return reverse('thanks', kwargs={'thanks_id': self.pk})
+
 
 class Sale(models.Model):
     medication = models.ForeignKey(Medication, on_delete=models.CASCADE)
