@@ -11,6 +11,8 @@ urlpatterns = [
     path('medlist/', views.mlist, name='medlist'),  # http://127.0.0.1:8000/medicines/medlist/
     path('bying/<int:bying_id>/', views.bying, name='bying'),
     path('thanks/', views.thanks, name='thanks'),
+    path('w_registr/', views.w_registr, name='w_registr'),
+    path('medhomew/', views.medhomew, name='medhomew'),
     re_path(r'^archive/(?P<year>[0-9]{4})/', archive),  # http://127.0.0.1:8000/medicines/archive/1999/
 
 ]

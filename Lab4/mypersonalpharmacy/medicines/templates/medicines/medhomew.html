@@ -1,4 +1,4 @@
-{% extends 'medicines/layout.html' %}
+{% extends 'medicines/temp.html' %}
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
 
@@ -16,7 +16,6 @@
                 {% if p.photo %}
                     <p><img class="img-left thumb" src="{{p.photo.url}}"></p>
                 {% endif %}
-                <a href="{{ p.get_absolute_url }}" class="btn btn-warning">Купить</a>
                 <hr>
             </div>
           {% endfor %}
