@@ -1,10 +1,10 @@
 {% extends 'medicines/layout.html' %}
 {% load static %}
-{% block title %}{{ title }}{% endblock %}
+{% block title %}Аптеки{% endblock %}
 
 {% block content %}
 <div class="features">
-    <h1>{{title}}</h1>
+    <h1>Аптеки</h1>
     {% if posts %}
         {% for p in posts %}
             <div class="alert alert-warning">

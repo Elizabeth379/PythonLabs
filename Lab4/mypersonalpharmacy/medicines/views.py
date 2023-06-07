@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
 from .models import *
 import random
@@ -9,14 +10,35 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView
 
 
-def home(request):
-    return render(request, "medicines/home.html")
+class MedList(ListView):
+    model = Medication
+    template_name = 'medicines/med_list.html'
+    context_object_name = 'posts'
+    ordering = ('title',)
+
+
+class Pharmacies(ListView):
+    model = Department
+    template_name = 'medicines/pharms.html'
+    context_object_name = 'posts'
 
 
 class SignUp(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
+
+
+class NoAvailable(ListView):
+    model = Sale
+    template_name = 'medicines/no_avail.html'
+    context_object_name = 'posts'
+    ordering = ('medication', )
+
+
+def home(request):
+    return render(request, "medicines/home.html")
+
 
 def test(request):
     response = requests.get('https://cat-fact.herokuapp.com/facts')
@@ -42,28 +64,6 @@ def about(request):
         'image_url': image_url,
     }
     return render(request, 'medicines/about.html', context)
-
-
-def mlist(request):
-    posts = Medication.objects.order_by('title')
-    if request.GET:
-        print(request.GET)  # http://127.0.0.1:8000/medicines/medlist/?name=George&type=medic
-    if request.POST:
-        print(request.POST)
-    return render(request, 'medicines/med_list.html', {'posts': posts, 'title': 'Лекарства'})
-
-
-def pharms(request):
-    posts = Department.objects.order_by('name')
-    return render(request, 'medicines/pharms.html', {'posts': posts, 'title': 'Аптеки'})
-
-
-def archive(request, year):
-    if int(year) > 2023:
-        return redirect('medhome')
-    if int(year) < 1800:
-        raise Http404()
-    return HttpResponse(f"<h1>Архив по годам</h1><p>{year}</p>")
 
 
 def pageNotFound(request, exception):
@@ -93,10 +93,6 @@ def thanks(request, thanks_id):
             purchase.save()
     return render(request, 'medicines/thanks.html', {'posts': posts, 'title': 'Куплено'})
 
-def no_avail(request):
-    posts = Sale.objects.order_by('medication')
-    return render(request, 'medicines/no_avail.html', {'posts': posts, 'title': 'Не куплено'})
-
 
 def w_registr(request):
     return render(request, 'medicines/w_registr.html', {'title': 'Добро пожаловать!'})
@@ -105,3 +101,10 @@ def w_registr(request):
 def medhomew(request):
     posts = Medication.objects.order_by('title')
     return render(request, 'medicines/medhomew.html', {'posts': posts, 'title': 'Лекарства'})
+
+
+class MedWithoutHome(ListView):
+    model = Medication
+    template_name = 'medicines/medhomew.html'
+    context_object_name = 'posts'
+    ordering = ('title', )
