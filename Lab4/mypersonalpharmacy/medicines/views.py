@@ -68,7 +68,7 @@ def pageNotFound(request, exception):
 
 def bying(request, bying_id):
     purchase = Medication.objects.get(pk=bying_id)
-    
+
     return render(request, 'medicines/bying.html', {'title': 'Покупка', 'purchase': purchase})
 
 
@@ -76,6 +76,9 @@ def thanks(request, thanks_id):
     posts = Sale.objects.order_by('medication')
     purchase = Medication.objects.get(pk=thanks_id)
     saled = Sale.objects.all()
+    if purchase.quantity == 0:
+        purchase.is_available = False
+        return render(request, 'medicines/no_avail.html', {'posts': posts, 'title': 'Не куплено'})
     for el in saled:
         if el.medication == purchase:
             el.quantity += 1
@@ -85,6 +88,10 @@ def thanks(request, thanks_id):
             el.save()
             purchase.save()
     return render(request, 'medicines/thanks.html', {'posts': posts, 'title': 'Куплено'})
+
+def no_avail(request):
+    posts = Sale.objects.order_by('medication')
+    return render(request, 'medicines/no_avail.html', {'posts': posts, 'title': 'Не куплено'})
 
 
 def w_registr(request):

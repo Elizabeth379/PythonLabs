@@ -1,0 +1,26 @@
+{% extends 'medicines/layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>Приносим наши извинения, товара на складе больше нет.</h1>
+
+    <h1>Наши продажи:</h1>
+    {% if posts %}
+        {% for p in posts %}
+            <div class="alert alert-warning">
+                <h3>{{p.medication}}</h3>
+                <p>Продавец: {{p.employee}}</p>
+                <p>Куплено: {{p.quantity}}</p>
+                <p>Дата покупки: {{p.date}}</p>
+                <hr>
+            </div>
+          {% endfor %}
+    {% else %}
+        <p>Лекарств не куплено.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}
