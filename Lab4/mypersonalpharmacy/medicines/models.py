@@ -53,7 +53,7 @@ class Employee(models.Model):
 class Medication(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
-    photo = models.ImageField(upload_to="photos/%Y/%n/%d/", null=True)
+    #photo = models.ImageField(upload_to="photos/%Y/%n/%d/", null=True)
     category = models.ForeignKey(MedicationCategory, on_delete=models.CASCADE)
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=8, decimal_places=2)
